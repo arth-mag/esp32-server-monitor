@@ -13,10 +13,10 @@ Aplicação embarcada em **ESP32** que se conecta ao servidor **ZimaOS** via WiF
 │           ESP32 + ST7735 Display             │
 ├──────────────────────────────────────────────┤
 │  WiFi                                        │
-│    └─ Arthur2.4_ (SSID)                     │
+│    └─ YOUR_WIFI_SSID (SSID)                 │
 │                                              │
 │  MQTT (PubSubClient)                        │
-│    └─ Broker: 192.168.2.21:1883            │
+│    └─ Broker: YOUR_MQTT_BROKER_IP:PORT     │
 │    └─ Tópico: servidor/metricas            │
 │                                              │
 │  Parsing JSON (ArduinoJson)                 │
@@ -97,12 +97,12 @@ pio device monitor -b 115200
 
 ### Configuração
 
-Edite `include/config.h` para ajustar:
+Edite `include/config.h` (ou copie `include/config.h.example`) e ajuste seus valores privados:
 
 ```cpp
-static const char* WIFI_SSID = "Arthur2.4_";
-static const char* WIFI_PASSWORD = "@moNina08anos";
-static const char* MQTT_SERVER = "192.168.2.21";  // IP do ZimaOS/Mosquitto
+static const char* WIFI_SSID = "YOUR_WIFI_SSID";
+static const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD";
+static const char* MQTT_SERVER = "YOUR_MQTT_BROKER_IP";  // exemplo: "192.168.2.21"
 
 // Display ST7735 pinos SPI
 static const int TFT_CS = 5;   // Chip select
@@ -129,8 +129,8 @@ static const bool DEBUG = false;
 
 ### Fluxo de Dados
 
-1. **WiFi Connect**: ESP32 conecta a `Arthur2.4_` (SSID)
-2. **MQTT Connect**: Conecta ao broker em `192.168.2.21:1883`
+1. **WiFi Connect**: ESP32 conecta ao SSID configurado em `include/config.h`
+2. **MQTT Connect**: Conecta ao broker configurado em `include/config.h`
 3. **Subscribe**: Inscreve-se no tópico `servidor/metricas`
 4. **Telegram JSON Receive**: Recebe pacotes JSON do Telegraf contendo métricas do servidor
 5. **Parse**: Extrai campos relevantes (CPU, RAM, disco, uptime, containers)
@@ -281,7 +281,7 @@ Centralizador de configurações:
 
 **Causa**: ESP32 em rede WiFi diferente do servidor MQTT.
 
-**Solução**: Confirme que ESP32 conectou na mesma rede (192.168.2.x para servidor em 192.168.2.21) e atualize `MQTT_SERVER` em `config.h`.
+**Solução**: Confirme que ESP32 e o broker MQTT estão na mesma rede/sub-rede e que `MQTT_SERVER` em `include/config.h` aponta para o IP correto do broker.
 
 ### Display não mostra nada
 
