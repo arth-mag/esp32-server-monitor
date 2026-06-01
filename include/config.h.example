@@ -1,9 +1,13 @@
 #pragma once
 
+// CONFIGURATION EXAMPLE
+// Copy this file to `include/config.h` and fill your private values.
+// Do NOT commit `include/config.h` to the repository.
+
 // Rede e MQTT
-static const char* WIFI_SSID = "Arthur2.4_";
-static const char* WIFI_PASSWORD = "@moNina08anos";
-static const char* MQTT_SERVER = "192.168.2.21";
+static const char* WIFI_SSID = "YOUR_WIFI_SSID";         // exemplo: "HomeWiFi"
+static const char* WIFI_PASSWORD = "YOUR_WIFI_PASSWORD"; // exemplo: "supersecret"
+static const char* MQTT_SERVER = "YOUR_MQTT_BROKER_IP";  // exemplo: "192.168.2.21"
 
 // Display ST7735 (pinos sugeridos — adapte conforme seu wiring)
 // Pinos SPI padrão ESP32: SCK=18, MOSI=23
