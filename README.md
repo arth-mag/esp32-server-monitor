@@ -34,13 +34,3 @@ The system is decoupled, adhering to modular software design principles:
     Infrastructure: Docker, Telegraf, Mosquitto MQTT Broker.
 
     Build System: PlatformIO (VS Code).
-
-📊 Repository Structure
-Plaintext
-
-├── src/
-│   ├── main.cpp          # Entry point and state machine logic
-│   ├── mqtt_handler.cpp  # MQTT connection management & JSON parsing
-│   └── display_st7735.cpp # Hardware abstraction layer for the display
-├── include/              # Header files and interface definitions
-├── platformio.ini        # Build configurations and dependency management
